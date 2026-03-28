@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog>
+  <store name="BookWorld" location="New York">
+    <category name="Fiction">
+      <book id="B001">
+        <title>The Great Adventure</title>
+        <author>Jane Writer</author>
+        <price currency="USD">19.99</price>
+        <reviews>
+          <review rating="5" user="reader1">Amazing book!</review>
+          <review rating="4" user="reader2">Very enjoyable read.</review>
+          <review rating="3" user="reader3">Decent story.</review>
+        </reviews>
+        <tags>
+          <tag>adventure</tag>
+          <tag>fiction</tag>
+          <tag>bestseller</tag>
+        </tags>
+      </book>
+      <book id="B002">
+        <title>Mystery at Midnight</title>
+        <author>John Author</author>
+        <price currency="USD">14.99</price>
+        <reviews>
+          <review rating="5" user="reader4">Couldn't put it down!</review>
+          <review rating="5" user="reader5">Brilliant mystery.</review>
+        </reviews>
+        <tags>
+          <tag>mystery</tag>
+          <tag>thriller</tag>
+        </tags>
+      </book>
+    </category>
+    <category name="Science">
+      <book id="B003">
+        <title>Quantum Horizons</title>
+        <author>Dr. Sarah Scientist</author>
+        <price currency="USD">29.99</price>
+        <reviews>
+          <review rating="4" user="reader6">Informative and well-written.</review>
+        </reviews>
+        <tags>
+          <tag>science</tag>
+          <tag>physics</tag>
+          <tag>non-fiction</tag>
+        </tags>
+      </book>
+    </category>
+  </store>
+  <store name="TechBooks" location="San Francisco">
+    <category name="Programming">
+      <book id="B004">
+        <title>Python Mastery</title>
+        <author>Alex Coder</author>
+        <price currency="USD">39.99</price>
+        <reviews>
+          <review rating="5" user="reader7">Best Python book ever.</review>
+          <review rating="4" user="reader8">Comprehensive guide.</review>
+          <review rating="4" user="reader9">Great examples.</review>
+          <review rating="3" user="reader10">A bit too advanced for beginners.</review>
+        </reviews>
+        <tags>
+          <tag>python</tag>
+          <tag>programming</tag>
+          <tag>tutorial</tag>
+        </tags>
+      </book>
+      <book id="B005">
+        <title>Data Engineering Handbook</title>
+        <author>Maria Data</author>
+        <price currency="USD">44.99</price>
+        <reviews>
+          <review rating="5" user="reader11">Essential reading for DE.</review>
+        </reviews>
+        <tags>
+          <tag>data-engineering</tag>
+          <tag>etl</tag>
+          <tag>databases</tag>
+        </tags>
+      </book>
+    </category>
+    <category name="DevOps">
+      <book id="B006">
+        <title>Kubernetes in Practice</title>
+        <author>Tom Ops</author>
+        <price currency="USD">34.99</price>
+        <reviews>
+          <review rating="4" user="reader12">Practical and useful.</review>
+          <review rating="5" user="reader13">Cleared all my doubts about K8s.</review>
+        </reviews>
+        <tags>
+          <tag>kubernetes</tag>
+          <tag>devops</tag>
+          <tag>containers</tag>
+        </tags>
+      </book>
+    </category>
+  </store>
+</catalog>

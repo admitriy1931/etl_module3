@@ -1,0 +1,109 @@
+x-airflow-common: &airflow-common
+  image: apache/airflow:2.8.1-python3.11
+  environment:
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+    AIRFLOW__WEBSERVER__SECRET_KEY: change_me_secret
+    POSTGRES_HOST: postgres
+    POSTGRES_PORT: "5432"
+    POSTGRES_DB: etl_project
+    POSTGRES_USER: etl_user
+    POSTGRES_PASSWORD: etl_password
+    MONGO_HOST: mongodb
+    MONGO_PORT: "27017"
+    MONGO_DB: etl_source
+    MONGO_SEED: "42"
+    MONGO_NUM_USERS: "200"
+    MONGO_NUM_SESSIONS: "1000"
+    MONGO_NUM_EVENTS: "5000"
+    MONGO_NUM_TICKETS: "500"
+    MONGO_NUM_REVIEWS: "800"
+    INCREMENTAL_DAYS: "3"
+    PYTHONPATH: /opt/airflow/src
+  volumes:
+    - ./airflow/dags:/opt/airflow/dags
+    - ./airflow/plugins:/opt/airflow/plugins
+    - ./src:/opt/airflow/src
+    - ./data:/opt/airflow/data
+    - ./sql:/opt/airflow/sql
+    - airflow-logs:/opt/airflow/logs
+  depends_on:
+    postgres:
+      condition: service_healthy
+    mongodb:
+      condition: service_started
+
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+      - ./sql/init_postgres.sql:/docker-entrypoint-initdb.d/01_init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U airflow"]
+      interval: 5s
+      retries: 10
+
+  mongodb:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  airflow-init:
+    <<: *airflow-common
+    entrypoint: /bin/bash
+    command:
+      - -c
+      - |
+        pip install --no-cache-dir pymongo pandas lxml psycopg2-binary pydantic pendulum requests pyarrow python-dotenv &&
+        airflow db migrate &&
+        airflow users create \
+          --username admin \
+          --password admin \
+          --firstname Admin \
+          --lastname User \
+          --role Admin \
+          --email admin@example.com || true
+    restart: "no"
+
+  airflow-webserver:
+    <<: *airflow-common
+    command:
+      - bash
+      - -c
+      - |
+        pip install --no-cache-dir pymongo pandas lxml psycopg2-binary pydantic pendulum requests pyarrow python-dotenv &&
+        airflow webserver --port 8080
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+
+  airflow-scheduler:
+    <<: *airflow-common
+    command:
+      - bash
+      - -c
+      - |
+        pip install --no-cache-dir pymongo pandas lxml psycopg2-binary pydantic pendulum requests pyarrow python-dotenv &&
+        airflow scheduler
+    restart: always
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+
+volumes:
+  pg-data:
+  mongo-data:
+  airflow-logs:

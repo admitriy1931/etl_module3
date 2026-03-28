@@ -1,0 +1,89 @@
+{
+  "company": "TechCorp",
+  "founded": 2015,
+  "departments": [
+    {
+      "name": "Engineering",
+      "head": {
+        "first_name": "Ivan",
+        "last_name": "Petrov",
+        "contact": {
+          "email": "ivan.petrov@techcorp.com",
+          "phone": "+7-999-111-2233"
+        }
+      },
+      "employees": [
+        {
+          "id": 101,
+          "first_name": "Anna",
+          "last_name": "Sidorova",
+          "role": "Backend Developer",
+          "skills": ["Python", "PostgreSQL", "Docker"],
+          "projects": [
+            {"project_id": "P001", "name": "Data Pipeline", "status": "active"},
+            {"project_id": "P002", "name": "API Gateway", "status": "completed"}
+          ]
+        },
+        {
+          "id": 102,
+          "first_name": "Dmitry",
+          "last_name": "Kozlov",
+          "role": "Frontend Developer",
+          "skills": ["React", "TypeScript"],
+          "projects": [
+            {"project_id": "P003", "name": "Dashboard UI", "status": "active"}
+          ]
+        },
+        {
+          "id": 103,
+          "first_name": "Elena",
+          "last_name": "Morozova",
+          "role": "Data Engineer",
+          "skills": ["Spark", "Airflow", "Python", "SQL"],
+          "projects": [
+            {"project_id": "P001", "name": "Data Pipeline", "status": "active"},
+            {"project_id": "P004", "name": "ML Feature Store", "status": "planning"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Marketing",
+      "head": {
+        "first_name": "Maria",
+        "last_name": "Volkova",
+        "contact": {
+          "email": "maria.volkova@techcorp.com",
+          "phone": "+7-999-444-5566"
+        }
+      },
+      "employees": [
+        {
+          "id": 201,
+          "first_name": "Sergey",
+          "last_name": "Novikov",
+          "role": "Content Manager",
+          "skills": ["SEO", "Copywriting"],
+          "projects": [
+            {"project_id": "M001", "name": "Blog Relaunch", "status": "active"}
+          ]
+        },
+        {
+          "id": 202,
+          "first_name": "Olga",
+          "last_name": "Kuznetsova",
+          "role": "Designer",
+          "skills": ["Figma", "Illustrator", "Photoshop"],
+          "projects": [
+            {"project_id": "M001", "name": "Blog Relaunch", "status": "active"},
+            {"project_id": "M002", "name": "Brand Kit", "status": "completed"}
+          ]
+        }
+      ]
+    }
+  ],
+  "offices": [
+    {"city": "Moscow", "address": "ul. Tverskaya 10", "capacity": 120},
+    {"city": "Saint Petersburg", "address": "Nevsky pr. 25", "capacity": 60}
+  ]
+}

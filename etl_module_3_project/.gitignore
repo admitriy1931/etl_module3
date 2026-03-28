@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.env
+*.log
+data/processed/*
+!data/processed/.gitkeep
+airflow/logs/
+airflow/*.db
+airflow/*.cfg
+.DS_Store
+.idea/
+.vscode/
